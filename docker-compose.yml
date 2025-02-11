@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  video_processor:
+    build:
+      context: .
+      dockerfile: video_processor/Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - video_network
+
+  video_searcher:
+    build:
+      context: .
+      dockerfile: video_searcher/Dockerfile
+    ports:
+      - "5001:5001"
+    networks:
+      - video_network
+    depends_on:
+      - video_processor
+
+
+
+networks:
+  video_network:
+    driver: bridge
