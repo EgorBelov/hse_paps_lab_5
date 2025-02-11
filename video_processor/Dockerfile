@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get clean
 
 # Устанавливаем зависимости для работы с видео
-RUN pip install --no-cache-dir opencv-python numpy flask
+RUN pip install --no-cache-dir opencv-python numpy flask pytest
 
 # Копируем исходный код сервиса в контейнер
 COPY ./video_processor /app

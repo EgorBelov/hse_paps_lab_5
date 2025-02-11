@@ -1,7 +1,7 @@
 import requests
 
 def test_video_searcher():
-    url = 'http://localhost:5001/search'
+    url = 'http://video_searcher:5001/search'  
     files = {'file': open('test_video.mp4', 'rb')}
     response = requests.post(url, files=files)
     assert response.status_code == 200
