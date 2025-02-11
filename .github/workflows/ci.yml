@@ -44,5 +44,6 @@ jobs:
       - name: Run tests
         run: |
           docker-compose up -d
-          docker-compose exec video_processor pytest tests/
-          docker-compose exec video_searcher pytest tests/
+          docker-compose exec -T video_processor pytest tests/
+          docker-compose exec -T video_searcher pytest tests/
+
