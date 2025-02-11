@@ -19,22 +19,27 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build Docker images
+      - name: Set up Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version  # Проверим, что установка прошла успешно
+
+      - name: Build video_processor image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./video_processor/Dockerfile  # Путь к Dockerfile для video_processor
+          file: ./video_processor/Dockerfile
           push: false
           tags: video_processor:latest
 
-      - name: Build Docker images for video_searcher
+      - name: Build video_searcher image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./video_searcher/Dockerfile  # Путь к Dockerfile для video_searcher
+          file: ./video_searcher/Dockerfile
           push: false
           tags: video_searcher:latest
-
 
       - name: Run tests
         run: |
