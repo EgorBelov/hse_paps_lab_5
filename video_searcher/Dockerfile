@@ -7,6 +7,9 @@ RUN pip install --no-cache-dir flask requests pytest
 # Копируем исходный код сервиса в контейнер
 COPY ./video_searcher /app
 
+# Копируем видеофайл в контейнер
+COPY ./tests/test.mp4 /app/tests/test.mp4
+
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /app
 

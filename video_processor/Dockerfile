@@ -12,6 +12,9 @@ RUN pip install --no-cache-dir opencv-python numpy flask pytest requests
 # Копируем исходный код сервиса в контейнер
 COPY ./video_processor /app
 
+# Копируем видеофайл в контейнер
+COPY ./tests/test.mp4 /app/tests/test.mp4
+
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /app
 
