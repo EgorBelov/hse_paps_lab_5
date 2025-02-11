@@ -23,9 +23,18 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile
+          file: ./video_processor/Dockerfile  # Путь к Dockerfile для video_processor
           push: false
-          tags: video_processor:latest, video_searcher:latest
+          tags: video_processor:latest
+
+      - name: Build Docker images for video_searcher
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./video_searcher/Dockerfile  # Путь к Dockerfile для video_searcher
+          push: false
+          tags: video_searcher:latest
+
 
       - name: Run tests
         run: |
